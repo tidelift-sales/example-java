@@ -14,7 +14,24 @@
   </properties>
 
   <build>
+    <finalName>basic-struts</finalName>
     <plugins>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.7.v20170914</version>
+        <configuration>
+          <webApp>
+            <contextPath>/${project.build.finalName}</contextPath>
+          </webApp>
+          <stopKey>CTRL+C</stopKey>
+          <stopPort>8999</stopPort>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <scanTargets>
+            <scanTarget>src/main/webapp/WEB-INF/web.xml</scanTarget>
+          </scanTargets>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -39,16 +56,26 @@
     </plugins>
   </build>
   <dependencies>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.9.2</version>
-		</dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.9.2</version>
+    </dependency>
     <dependency>
     	<groupId>junit</groupId>
     	<artifactId>junit</artifactId>
     	<version>4.12</version>
     	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-core</artifactId>
+    	<version>2.3.31</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-parent</artifactId>
+    	<version>2.3.31</version>
     </dependency>
   </dependencies>
 </project>
